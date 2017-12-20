@@ -1,47 +1,49 @@
-var BASE_URL = 'http://api.reactprototypes.com';
-var API_KEY = '?key=testuser1234';
 
-axios.get(BASE_URL + '/todos' + API_KEY).then(function(resp){
-    var todos = resp.data.todos;
-    var table = $('table tbody');
 
-    // addToDom(todos, table);
-    addToDomNoMap(todos, table);
-});
+// fetch('http://api.reactprototypes.com/todos?key=testuser1234').then(resp => {
+//    return resp.json()
+// }).then(resp => {
+//     console.log("Resp: ", resp);
+// });
 
-var addToDom = function(list, container) {
-    console.info('Using Map');
 
-    var tableRows = list.map((item, index) => {
 
-        var tableData = [
-            $(`<td>${index + 1}</td>`),
-            $(`<td>${item.title}</td>`),
-            item.complete ? $(`<td class="text-success">Yes</td>`) : $(`<td class="text-danger">No</td>`)
-        ];
 
-        return $('<tr>').append(tableData);
-    });
+// console.log('script file loaded');
+//
+// const BASE_URL = 'http://s-apis.learningfuze.com/sgt/get';
+// // const API_KEY = '?key=testuser1234';
+//
+// const dataToSend = 'api_key=d7r3OiW4rR';
+//
+// const settings = {
+//     headers: {
+//         'content-type': 'application/x-www-form-urlencoded'
+//     }
+// };
+//
+// axios.post(BASE_URL, dataToSend, settings)
+//     .then(handleResponse)
+//     .catch((err)=>{
+//         console.log("Error ", err);
+//     });
+//
+// function handleResponse(resp){
+//     console.log('Real Function Server Response: ', resp.data);
+// }
+//
 
-    container.append(tableRows);
-};
 
-var addToDomNoMap = function(list, container) {
-    console.info('Using For Loop');
+//try catch blocks.
 
-    var tableRows = [];
+try {
+    console.log("Trying something");
+    doStuff(2,4);
+} catch(err){
+    console.warn('Error: ', err);
+}
 
-    for(var i = 0; i < list.length; i++){
-        var item = list[i];
-
-        var tableData = [
-            $(`<td>${i + 1}</td>`),
-            $(`<td>${item.title}</td>`),
-            item.complete ? $(`<td class="text-success">Yes</td>`) : $(`<td class="text-danger">No</td>`)
-        ];
-
-        tableRows.push($('<tr>').append(tableData));
-    }
-
-    container.append(tableRows);
-};
+function doStuff(x,y){
+    throw new Error('Something went wrong.');
+    return x+y;
+}
